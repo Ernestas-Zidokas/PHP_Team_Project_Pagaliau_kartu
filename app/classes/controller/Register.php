@@ -37,10 +37,6 @@ class Register extends Base {
             'is_active' => true
         ]);
 
-        $success_msg = strtr('User "@email" sėkmingai sukurtas!', [
-            '@email' => $safe_input['email']
-        ]);
-
         \App\App::$user_repo->insert($user);
     }
 

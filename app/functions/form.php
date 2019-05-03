@@ -77,3 +77,25 @@ function validate_logout(&$safe_input, &$form) {
         return true;
     }
 }
+
+function validate_user_balance(&$safe_input, &$form) {
+    $user = \App\App::$session->getUser()->getEmail();
+    $repo = new \App\User\Repository(\App\App::$db_conn);
+    $email = $repo->load(\App\App::$session->getUser()->getEmail());
+    $balance = $email->getBalance();
+    $safe_input = $this->form->getInput();
+    $bet = $safe_input['bet'];
+    if ($balance >= $bet) {
+        return true;
+    } else {
+        $form['error_msg'] = 'Jobans/a tu buhurs/gazele nes tau truksta pinigu!';
+    }
+}
+
+function validate_min_bet(&$safe_input, &$form) {
+    if ($safe_input['bet'] > 1) {
+        return true;
+    } else {
+        $form['error_msg'] = 'Jobans/a tu buhurs/gazele nes minimali suma 1$!';
+    }
+}

@@ -22,6 +22,12 @@
                         <option value="<?php print $option_id; ?>"><?php print $option_label; ?></option>
                     <?php endforeach; ?>
                 </select>
+            <?php elseif ($field['type'] == 'radio'): ?>
+                <!-- radio field -->
+                <label>
+                    <input type="radio" name="<?php print $field['label']; ?>" value="<?php print $field['value']; ?>">
+                    <img src="<?php print $field['img']; ?>">
+                </label>
             <?php endif; ?>
 
             <!-- Errors -->
