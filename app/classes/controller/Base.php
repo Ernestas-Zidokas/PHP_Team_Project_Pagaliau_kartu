@@ -7,6 +7,8 @@ class Base extends \Core\Page\Controller {
     public function __construct() {
         parent::__construct();
 
+        $this->page['stylesheets'][] = 'css/style.css';
+
         if (!\App\App::$session->isLoggedIn() === true) {
             $nav_view = new \App\View\Navigation([
                 [

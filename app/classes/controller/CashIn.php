@@ -26,9 +26,15 @@ class CashIn extends Base {
                 $this->page['message'] = 'Sekmingai inesei pinigu';
                 break;
         }
+        
+        if ($this->user) {
+            $content['balance'] = $this->user->getBalance();
+        } else {
+            $content['balance'] = 0;
+        }
 
         $content['content'] = $this->form->render();
-        $content['balance'] = $this->user->getBalance();
+
 
         $this->view = new \Core\Page\View($content);
         $this->page['content'] = $this->view->render(ROOT_DIR . '/app/views/cashIn.tpl.php');

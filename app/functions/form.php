@@ -97,3 +97,22 @@ function validate_input_more_than_5($field_input, &$field, &$safe_input) {
         ]);
     }
 }
+
+function validate_user_balance($field_input, &$field, &$safe_input) {
+    $repo = new \App\User\Repository(\App\App::$db_conn);
+    $email = $repo->load(\App\App::$session->getUser()->getEmail());
+
+    if ($email->getBalance() >= $safe_input['bet']) {
+        return true;
+    } else {
+        $field['error_msg'] = 'Jobans/a tu buhurs/gazele nes tau truksta pinigu!';
+    }
+}
+
+function validate_min_bet($field_input, &$field, &$safe_input) {
+    if ($safe_input['bet'] >= 1) {
+        return true;
+    } else {
+        $field['error_msg'] = 'Jobans/a tu buhurs/gazele nes minimali suma 1$!';
+    }
+}

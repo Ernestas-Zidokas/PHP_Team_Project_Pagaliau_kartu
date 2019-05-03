@@ -1,7 +1,7 @@
 <form method="POST" enctype="multipart/form-data">
     <?php foreach ($view['fields'] as $field_id => $field): ?>
         <label>
-            <span><?php print $field['label']; ?></span>
+            <span><?php print $field['label'] ?? '' ?></span>
 
             <!-- Form field -->            
             <?php if (in_array($field['type'], ['text', 'password', 'file'])): ?>
@@ -22,6 +22,15 @@
                         <option value="<?php print $option_id; ?>"><?php print $option_label; ?></option>
                     <?php endforeach; ?>
                 </select>
+                
+            <?php elseif ($field[0]['type'] == 'radio'): ?>
+                <!-- radio field -->
+                <?php foreach($field as $option): ?> 
+                <label>
+                    <input type="radio" name="dice" value="<?php print $option['value']; ?>">
+                    <img src="<?php print $option['img']; ?>">
+                </label>
+                <?php endforeach; ?>
             <?php endif; ?>
 
             <!-- Errors -->
