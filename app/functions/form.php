@@ -77,3 +77,23 @@ function validate_logout(&$safe_input, &$form) {
         return true;
     }
 }
+
+function validate_positive_number($field_input, &$field, &$safe_input) {
+    if ($safe_input['balance'] > 0) {
+        return true;
+    } else {
+        $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
+                . 'nes @field negali but mazesnis uz 0!', ['@field' => $field['label']
+        ]);
+    }
+}
+
+function validate_input_more_than_5($field_input, &$field, &$safe_input) {
+    if ($safe_input['balance'] >= 5) {
+        return true;
+    } else {
+        $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
+                . 'nes @field negali but mazesnis uz 5!', ['@field' => $field['label']
+        ]);
+    }
+}

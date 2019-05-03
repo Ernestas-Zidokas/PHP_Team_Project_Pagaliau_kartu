@@ -5,4 +5,4 @@
 \Core\Page\Router::addRoute('/register', '\App\Controller\Register');
 \Core\Page\Router::addRoute('/logout', '\App\Controller\Logout');
 \Core\Page\Router::addRoute('/home', '\App\Controller\Home');
-
+\Core\Page\Router::addRoute('/cash-in', '\App\Controller\CashIn');

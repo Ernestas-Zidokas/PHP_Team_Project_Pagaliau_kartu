@@ -10,31 +10,23 @@ class Base extends \Core\Page\Controller {
         if (!\App\App::$session->isLoggedIn() === true) {
             $nav_view = new \App\View\Navigation([
                 [
-                    'link' => 'home',
-                    'title' => 'Home'
-                ],
-                [
                     'link' => 'register',
                     'title' => 'Register'
                 ],
                 [
                     'link' => 'login',
                     'title' => 'Login'
-                ],
-                [
-                    'link' => 'logout',
-                    'title' => 'Logout'
                 ]
             ]);
         } else {
             $nav_view = new \App\View\Navigation([
                 [
-                    'link' => 'index',
-                    'title' => 'Index'
+                    'link' => 'cash-in',
+                    'title' => 'Cash-in'
                 ],
                 [
-                    'link' => 'register',
-                    'title' => 'Register'
+                    'link' => 'dice',
+                    'title' => 'Play'
                 ],
                 [
                     'link' => 'logout',

@@ -22,7 +22,8 @@ class Register extends \Core\Page\Objects\Form {
                     'type' => 'password',
                     'placeholder' => '********',
                     'validate' => [
-                        'validate_not_empty'
+                        'validate_not_empty',
+                        'validate_more_8_chars'
                     ]
                 ],
                 'password_again' => [
@@ -30,7 +31,8 @@ class Register extends \Core\Page\Objects\Form {
                     'type' => 'password',
                     'placeholder' => '********',
                     'validate' => [
-                        'validate_not_empty'
+                        'validate_not_empty',
+                        'validate_more_8_chars'
                     ]
                 ],
                 'full_name' => [
@@ -40,7 +42,7 @@ class Register extends \Core\Page\Objects\Form {
                     'validate' => [
                         'validate_not_empty',
                         'validate_contains_space',
-                        'validate_more_4_chars'
+                        'validate_no_numbers'
                     ]
                 ],
                 'age' => [
@@ -71,7 +73,6 @@ class Register extends \Core\Page\Objects\Form {
                     'placeholder' => '',
                     'options' => \Core\User\User::getOrientationOptions(),
                     'validate' => [
-                        'validate_not_empty',
                         'validate_field_select'
                     ],
                 ],

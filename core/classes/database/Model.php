@@ -2,6 +2,8 @@
 
 namespace Core\Database;
 
+use Core\Database\SQLBuilder;
+
 class Model extends \Core\Database\Abstracts\Model {
 
     public function create() {
@@ -98,13 +100,13 @@ class Model extends \Core\Database\Abstracts\Model {
         if ($conditions) {
             $sql = strtr("UPDATE @table SET @col WHERE @condition", [
                 '@table' => SQLBuilder::table($this->table_name),
-                '@col' => Core\Database\SQLBuilder::columnsEqualBinds($row_columns),
-                '@condition' => Core\Database\SQLBuilder::columnsEqualBinds($cond_columns, ' AND ', 'c_'),
+                '@col' => \Core\Database\SQLBuilder::columnsEqualBinds($row_columns),
+                '@condition' => \Core\Database\SQLBuilder::columnsEqualBinds($cond_columns, ' AND ', 'c_'),
             ]);
         } else {
             $sql = strtr("UPDATE @table SET @col", [
                 '@table' => SQLBuilder::table($this->table_name),
-                '@col' => Core\Database\SQLBuilder::columnsEqualBinds($row_columns)
+                '@col' => \Core\Database\SQLBuilder::columnsEqualBinds($row_columns)
             ]);
         }
 

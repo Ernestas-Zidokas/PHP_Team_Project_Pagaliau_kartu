@@ -9,6 +9,7 @@ abstract class User {
     const ORIENTATION_GAY = 'g';
     const ORIENTATION_STRAIGHT = 's';
     const ORIENTATION_BISEXUAL = 'b';
+    const ORIENTATION_NONE = 'n';
     
     const GENDER_MALE = 'm';
     const GENDER_FEMALE = 'f';
@@ -62,6 +63,7 @@ abstract class User {
 
     public function setOrientation(string $orientation) {
         if (in_array($orientation, [
+                    $this::ORIENTATION_NONE,
                     $this::ORIENTATION_STRAIGHT,
                     $this::ORIENTATION_GAY,
                     $this::ORIENTATION_BISEXUAL])) {
@@ -104,9 +106,10 @@ abstract class User {
 
     public static function getOrientationOptions() {
         return [
-            self::ORIENTATION_GAY => 'Gay',
-            self::ORIENTATION_STRAIGHT => 'Straight',
-            self::ORIENTATION_BISEXUAL => 'Bisexual'
+        self::ORIENTATION_NONE => 'Not Specified',
+        self::ORIENTATION_GAY => 'Gay',
+        self::ORIENTATION_STRAIGHT => 'Straight',
+        self::ORIENTATION_BISEXUAL => 'Bisexual'
         ];
     }
 

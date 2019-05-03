@@ -59,11 +59,11 @@ function validate_email($field_input, &$field, &$safe_input) {
 }
 
 function validate_age($field_input, &$field, &$safe_input) {
-    if ($safe_input['age'] > 0) {
+    if ($safe_input['age'] > 18) {
         return true;
     } else {
         $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
-                . 'nes @field negali but mazesnis uz 0!', ['@field' => $field['label']
+                . 'nes @field negali but mazesnis uz 18!', ['@field' => $field['label']
         ]);
     }
 }
@@ -78,12 +78,12 @@ function validate_contains_space($field_input, &$field, &$safe_input) {
     }
 }
 
-function validate_more_4_chars($field_input, &$field, &$safe_input) {
-    if (strlen($safe_input['full_name']) > 4) {
+function validate_more_8_chars($field_input, &$field, &$safe_input) {
+    if (strlen($safe_input['full_name']) >= 8) {
         return true;
     } else {
         $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
-                . 'nes @field privalo buti ilgesnis nei 4 simboliai', ['@field' => $field['label']
+                . 'nes @field privalo buti ilgesnis nei 8 simboliai', ['@field' => $field['label']
         ]);
     }
 }
