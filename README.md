@@ -2,5 +2,5 @@
 ## Featured:
 ### Draugas Augustinas
 ### Draugas Ernestas
-![GitHub Logo](images/friends.gif
+![GitHub Logo](public_html/images/friends.gif
 )
