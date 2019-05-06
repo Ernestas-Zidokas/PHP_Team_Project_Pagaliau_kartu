@@ -15,7 +15,6 @@ class Logout extends Base {
         switch ($this->form->process()) {
             case \App\Objects\Form\Logout::STATUS_SUCCESS:
                 $this->redirect();
-                $this->page['content'] = 'Sekmingai atsijungei';
                 break;
             default:
                 $this->page['content'] = $this->form->render();

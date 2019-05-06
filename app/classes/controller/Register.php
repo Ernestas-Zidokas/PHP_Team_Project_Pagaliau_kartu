@@ -6,16 +6,29 @@ class Register extends Base {
 
     /** @var \App\Objects\Form\Register */
     protected $form;
+    protected $input;
+    protected $repo;
 
     public function __construct() {
         parent::__construct();
-
+        
+        $this->repo = new \App\User\Repository(\App\App::$db_conn);
         $this->form = new \App\Objects\Form\Register();
+        $status = $this->form->process();
+        $this->input = $this->form->getInput();
 
-        switch ($this->form->process()) {
-            case \App\Objects\Form\Register::STATUS_SUCCESS:
+        switch ($status) {
+            case \App\Objects\Form\Register::STATUS_SUCCESS:                
                 $this->registerSuccess();
-                $this->page['content'] = 'Sekmingai uzsregistravai';
+
+                $user = new \App\User\User([
+                    'email' => $this->input['email'],
+                    'balance' => rand(10, 50)
+                ]);
+                $this->repo->insert($user);
+                
+                header('Location: /login');
+                exit();
                 break;
             default:
                 $this->page['content'] = $this->form->render();
@@ -23,17 +36,15 @@ class Register extends Base {
     }
 
     public function registerSuccess() {
-        $safe_input = $this->form->getInput();
-
         $user = new \Core\User\User([
-            'email' => $safe_input['email'],
-            'password' => $safe_input['password'],
-            'full_name' => $safe_input['full_name'],
-            'age' => $safe_input['age'],
-            'gender' => $safe_input['gender'],
-            'orientation' => $safe_input['orientation'],
+            'email' => $this->input['email'],
+            'password' => $this->input['password'],
+            'full_name' => $this->input['full_name'],
+            'age' => $this->input['age'],
+            'gender' => $this->input['gender'],
+            'orientation' => $this->input['orientation'],
             'account_type' => \Core\User\User::ACCOUNT_TYPE_USER,
-            'photo' => $safe_input['photo'],
+            'photo' => $this->input['photo'],
             'is_active' => true
         ]);
 

@@ -36,17 +36,7 @@ class Base extends \Core\Page\Controller {
                 ]
             ]);
         }
-
         $this->page['header'] = $nav_view->render();
-
-        $footer_view = new \App\View\Footer([
-            [
-                'name' => 'Footer name',
-                'contacts' => 'Footer contacts'
-            ]
-        ]);
-
-        $this->page['footer'] = $footer_view->render();
     }
 
 }

@@ -38,6 +38,7 @@ function validate_is_number($field_input, &$field, $safe_input) {
 
 function validate_file($field_input, &$field, &$safe_input) {
     $file = $_FILES[$field['id']] ?? false;
+    var_dump($file);
     if ($file) {
         if ($file['error'] == 0) {
             $safe_input[$field['id']] = $file;

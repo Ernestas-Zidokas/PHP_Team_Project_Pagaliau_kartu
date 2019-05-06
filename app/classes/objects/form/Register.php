@@ -80,6 +80,7 @@ class Register extends \Core\Page\Objects\Form {
                     'label' => 'Photo',
                     'placeholder' => 'file',
                     'type' => 'file',
+                    'not_required' => true,
                     'validate' => [
                         'validate_file'
                     ]

@@ -7,48 +7,54 @@ class Dice extends \Core\Page\Objects\Form {
     public function __construct() {
         parent::__construct([
             'fields' => [
-                'options' => [
-                    [
-                        'label' => 'dice',
-                        'type' => 'radio',
-                        'value' => 1,
-                        'img' => 'images/one.png',
-                        'validate' => []
+                'dice' => [
+                    'type' => 'radio',
+                    'options' => [
+                        [
+                            'label' => 'dice',
+                            'type' => 'radio',
+                            'value' => 1,
+                            'img' => 'images/one.png',
+                            'validate' => []
+                        ],
+                        [
+                            'label' => 'dice',
+                            'type' => 'radio',
+                            'value' => 2,
+                            'img' => 'images/two.png',
+                            'validate' => []
+                        ],
+                        [
+                            'label' => 'dice',
+                            'type' => 'radio',
+                            'value' => 3,
+                            'img' => 'images/three.png',
+                            'validate' => []
+                        ],
+                        [
+                            'label' => 'dice',
+                            'type' => 'radio',
+                            'value' => 4,
+                            'img' => 'images/four.png',
+                            'validate' => []
+                        ],
+                        [
+                            'label' => 'dice',
+                            'type' => 'radio',
+                            'value' => 5,
+                            'img' => 'images/five.png',
+                            'validate' => []
+                        ],
+                        [
+                            'label' => 'dice',
+                            'type' => 'radio',
+                            'value' => 6,
+                            'img' => 'images/six.png',
+                            'validate' => []
+                        ]
                     ],
-                    [
-                        'label' => 'dice',
-                        'type' => 'radio',
-                        'value' => 2,
-                        'img' => 'images/two.png',
-                        'validate' => []
-                    ],
-                    [
-                        'label' => 'dice',
-                        'type' => 'radio',
-                        'value' => 3,
-                        'img' => 'images/three.png',
-                        'validate' => []
-                    ],
-                    [
-                        'label' => 'dice',
-                        'type' => 'radio',
-                        'value' => 4,
-                        'img' => 'images/four.png',
-                        'validate' => []
-                    ],
-                    [
-                        'label' => 'dice',
-                        'type' => 'radio',
-                        'value' => 5,
-                        'img' => 'images/five.png',
-                        'validate' => []
-                    ],
-                    [
-                        'label' => 'dice',
-                        'type' => 'radio',
-                        'value' => 6,
-                        'img' => 'images/six.png',
-                        'validate' => []
+                    'validate' => [
+                        'validate_radio_not_empty'
                     ]
                 ],
                 'bet' => [
@@ -63,8 +69,7 @@ class Dice extends \Core\Page\Objects\Form {
                     ]
                 ]
             ],
-            'validate' => [
-            ],
+            'validate' => [],
             'buttons' => [
                 'submit' => [
                     'text' => 'Bet!'

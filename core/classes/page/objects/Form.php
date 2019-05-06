@@ -50,18 +50,21 @@ class Form {
         }
         if ($success) {
             foreach ($this->form['fields'] as $field_id => &$field) {
-                foreach ($field['validate'] as $validator) {
-                    if (is_callable($validator)) {
-                        $field['id'] = $field_id;
+                $field['not_required'] = $field['not_required'] ?? false;
+                if (!$field['not_required']) {
+                    foreach ($field['validate'] as $validator) {
+                        if (is_callable($validator)) {
+                            $field['id'] = $field_id;
 
-                        if (!$validator($this->input[$field_id], $field, $this->input)) {
-                            $success = false;
-                            break;
+                            if (!$validator($this->input[$field_id], $field, $this->input)) {
+                                $success = false;
+                                break;
+                            }
+                        } else {
+                            throw new Exception(strtr('Not callable @validator function', [
+                                '@validator' => $validator
+                            ]));
                         }
-                    } else {
-                        throw new Exception(strtr('Not callable @validator function', [
-                            '@validator' => $validator
-                        ]));
                     }
                 }
             }
@@ -82,7 +85,7 @@ class Form {
                 }
             }
         }
-        
+
         return $success;
     }
 
@@ -96,8 +99,8 @@ class Form {
             return self::STATUS_NOT_INPUT;
         }
     }
-    
-    public function getInput(){
+
+    public function getInput() {
         return $this->input;
     }
 

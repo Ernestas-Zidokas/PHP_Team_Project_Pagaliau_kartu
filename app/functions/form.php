@@ -50,13 +50,19 @@ function validate_password(&$safe_input, &$form) {
 }
 
 function validate_form_file(&$safe_input, &$form) {
-    $file_saved_url = save_file($safe_input['photo']);
-    if ($file_saved_url) {
-        $safe_input['photo'] = 'uploads/' . $file_saved_url;
-        return true;
-    } else {
-        $form['error_msg'] = 'Jobans/a tu buhurs/gazele nes failas supistas!';
+    if ($safe_input['photo']) {
+        $file_saved_url = save_file($safe_input['photo']);
+        if ($file_saved_url) {
+            $safe_input['photo'] = 'uploads/' . $file_saved_url;
+            return true;
+        } else {
+            $form['error_msg'] = 'Jobans/a tu buhurs/gazele nes failas supistas!';
+        }
+
+        return false;
     }
+
+    return true;
 }
 
 function save_file($file, $dir = 'uploads', $allowed_types = ['image/png', 'image/jpeg', 'image/gif']) {
@@ -102,10 +108,14 @@ function validate_user_balance($field_input, &$field, &$safe_input) {
     $repo = new \App\User\Repository(\App\App::$db_conn);
     $email = $repo->load(\App\App::$session->getUser()->getEmail());
 
-    if ($email->getBalance() >= $safe_input['bet']) {
-        return true;
+    if ($email) {
+        if ($email->getBalance() >= $safe_input['bet']) {
+            return true;
+        } else {
+            $field['error_msg'] = 'Jobans/a tu buhurs/gazele nes tau truksta pinigu!';
+        }
     } else {
-        $field['error_msg'] = 'Jobans/a tu buhurs/gazele nes tau truksta pinigu!';
+        $field['error_msg'] = 'Neisidejai pinigu!';
     }
 }
 
@@ -114,5 +124,13 @@ function validate_min_bet($field_input, &$field, &$safe_input) {
         return true;
     } else {
         $field['error_msg'] = 'Jobans/a tu buhurs/gazele nes minimali suma 1$!';
+    }
+}
+
+function validate_radio_not_empty($field_input, &$field, $safe_input) {
+    if (strlen($field_input) == 0) {
+        $field['error_msg'] = 'Privalai pasirinkti Dice!';
+    } else {
+        return true;
     }
 }
